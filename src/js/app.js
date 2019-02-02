@@ -61,12 +61,14 @@ const jtrello = (function() {
     event.preventDefault();
     console.log("This should create a new card");
 
-    
-    let input = $(this).find('input').val();  // Gets user input for new card
-    let bottomCard = $(this).parents(".list-cards").find(".card:last"); 
+    // Gets user input for new card
+    let input = $(this).find('input').val();  
 
-    // Adds new card at bottom of the list
-    $(bottomCard).after("<li class='card'>" + input + '<button class="button delete">X</button>' + '</li>');
+     // The <li> for the "Add New Card" form, acts as the bottom of our list
+    let bottomOfList = $(this).parents(".list-cards").find(".add-new");
+
+    // Adds new card at the bottom of the list
+    $(bottomOfList).before("<li class='card'>" + input + '<button class="button delete">X</button>' + '</li>');
   }
 
   function deleteCard() {
@@ -76,6 +78,10 @@ const jtrello = (function() {
   // Metod för att rita ut element i DOM:en
   function render() {}
 
+  // Metod för jQuery widgets
+  function widgets() {
+    $(".list-cards").sortable({connectWith: ".list-cards"});
+  }
   /* =================== Publika metoder nedan ================== */
 
   // Init metod som körs först
@@ -87,6 +93,8 @@ const jtrello = (function() {
     createDialogs();
 
     bindEvents();
+    
+    widgets();
   }
 
   // All kod här
