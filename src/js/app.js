@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-// require('webpack-jquery-ui');
+require('webpack-jquery-ui');
 import '../css/styles.css';
 
 /**
@@ -60,6 +60,8 @@ const jtrello = (function() {
   function createCard(event) {
     event.preventDefault();
     console.log("This should create a new card");
+    var input = $(event.target).find('input').val();
+    console.log(input);
   }
 
   function deleteCard() {
