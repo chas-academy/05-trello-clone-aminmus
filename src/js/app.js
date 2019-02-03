@@ -73,8 +73,15 @@ const jtrello = (function () {
     let newCard = bottomOfList.prev(".card");
 
     // Add event listeners to newly created card
-    newCard.children('.card > button.delete').on('click', deleteCard);
+    newCard.children('.card > button.delete').on('click', deleteCard);  // Delete
+
+    // Dialog
+    $(".card").on('click', function () {
+      $(".dialog").find("p").text(this.childNodes[0].nodeValue);
+      $(".dialog").dialog("open");
+    });
   }
+
 
   function deleteCard() {
     console.log("This should delete the card you clicked on");
@@ -84,10 +91,26 @@ const jtrello = (function () {
   // Metod för att rita ut element i DOM:en
   function render() { }
 
-  // Metod för jQuery widgets
+  // Metod för jQuery UI widgets
   function widgets() {
+
+    // Sortable (for card lists)
+
     $(".list-cards").sortable({ connectWith: ".list-cards" });
+
+    // Dialog (for cards)
+
+    $(".dialog").dialog({
+      modal: true,
+      autoOpen: false
+    });
+
+    $(".card").on('click', function () {
+      $(".dialog").find("p").text(this.childNodes[0].nodeValue);    // Gets the card text/content and puts it in dialog
+      $(".dialog").dialog("open");
+    })
   }
+
   /* =================== Publika metoder nedan ================== */
 
   // Init metod som körs först
