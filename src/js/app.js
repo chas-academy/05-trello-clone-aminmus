@@ -73,12 +73,12 @@ const jtrello = (function () {
     let newCard = bottomOfList.prev(".card");
 
     // Add event listeners to newly created card
-    newCard.on('click', deleteCard);
+    newCard.children('.card > button.delete').on('click', deleteCard);
   }
 
   function deleteCard() {
     console.log("This should delete the card you clicked on");
-    console.log($(event.target).parent().remove());
+    $(event.target).parent().remove();
   }
 
   // Metod för att rita ut element i DOM:en
