@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>jQuery UI - Trello Clone (yay!)</title>
 </head>
+
 <body>
     <div class="board">
         <div class="column">
@@ -74,13 +76,22 @@
     </div>
 
     <div id="list-creation-dialog" title="Create new list" style="height: 40px">
-        <form> 
+        <form>
             <input type="text" name="title" placeholder="List title" />
         </form>
     </div>
-    
+
+
     <div class="dialog">
-        <p></p>
+        <div id="tabs">
+            <ul>
+                <li><a href="#description-tab">Yo</a></li>
+                <li><a href="#fragment2">Testing</a></li>
+            </ul>
+        </div>
+        <div id="description-tab"></div>
+        <div id="fragment2"></div>
     </div>
 </body>
+
 </html>

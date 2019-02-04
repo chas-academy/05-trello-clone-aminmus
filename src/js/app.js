@@ -76,6 +76,7 @@ const jtrello = (function () {
     newCard.children('.card > button.delete').on('click', deleteCard);  // Delete
 
     // Dialog
+
     $(".dialog").dialog({
       buttons: [
         {
@@ -88,9 +89,12 @@ const jtrello = (function () {
     });
 
     $(".card").on('click', function () {
-      $(".dialog").find("p").text(this.childNodes[0].nodeValue);
+      $(".dialog").find("#description-tab").text(this.childNodes[0].nodeValue);
       $(".dialog").dialog("open");
     });
+
+    $("#tabs").tabs();
+
   }
 
 
@@ -109,6 +113,7 @@ const jtrello = (function () {
 
     $(".list-cards").sortable({ connectWith: ".list-cards" });
 
+
     // Dialog (for cards)
     $(".dialog").dialog({
       modal: true,
@@ -124,9 +129,11 @@ const jtrello = (function () {
     });
 
     $(".card").on('click', function () {
-      $(".dialog").find("p").text(this.childNodes[0].nodeValue);    // Gets the card text/content and puts it in dialog
+      $(".dialog").find("#description-tab").text(this.childNodes[0].nodeValue);    // Gets the card text/content and puts it in dialog
       $(".dialog").dialog("open");
     })
+
+    $("#tabs").tabs();
   }
 
   /* =================== Publika metoder nedan ================== */
