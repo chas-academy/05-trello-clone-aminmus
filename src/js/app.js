@@ -76,6 +76,18 @@ const jtrello = (function () {
     newCard.children('.card > button.delete').on('click', deleteCard);  // Delete
 
     // Dialog
+    $(".dialog").dialog({
+      buttons: [
+        {
+          text: "X",
+          icon: "ui-icon-close",
+          click: function () {
+            $(this).dialog("close");
+          }
+        }
+      ]
+    });
+
     $(".card").on('click', function () {
       $(".dialog").find("p").text(this.childNodes[0].nodeValue);
       $(".dialog").dialog("open");
@@ -99,10 +111,18 @@ const jtrello = (function () {
     $(".list-cards").sortable({ connectWith: ".list-cards" });
 
     // Dialog (for cards)
-
     $(".dialog").dialog({
       modal: true,
-      autoOpen: false
+      autoOpen: false,
+      buttons: [
+        {
+          text: "X",
+          icon: "ui-icon-close",
+          click: function () {
+            $(this).dialog("close");
+          }
+        }
+      ]
     });
 
     $(".card").on('click', function () {
