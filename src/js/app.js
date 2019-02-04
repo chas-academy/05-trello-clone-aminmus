@@ -80,7 +80,6 @@ const jtrello = (function () {
       buttons: [
         {
           text: "X",
-          icon: "ui-icon-close",
           click: function () {
             $(this).dialog("close");
           }
@@ -117,7 +116,6 @@ const jtrello = (function () {
       buttons: [
         {
           text: "X",
-          icon: "ui-icon-close",
           click: function () {
             $(this).dialog("close");
           }
