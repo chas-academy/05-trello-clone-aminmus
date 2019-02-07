@@ -75,6 +75,8 @@ const jtrello = (function () {
     // Add event listeners to newly created card
     newCard.children('.card > button.delete').on('click', deleteCard);  // Delete
 
+    newCard.data("name", input);
+
     // Dialog (for cards)
 
     $(".dialog").dialog({
@@ -89,7 +91,8 @@ const jtrello = (function () {
     });
 
     $(".card").on('click', function () {
-      $(".dialog").find("#description-tab > h3").text(this.childNodes[0].nodeValue);
+      // $(".dialog").find("#description-tab > h3").text(this.childNodes[0].nodeValue);
+      $(".dialog").find("#description-tab > h3").text(newCard.data('name'));
       $(".dialog").dialog("open");
     });
 
@@ -98,6 +101,7 @@ const jtrello = (function () {
 
     // Datepicker
     $("#datepicker").datepicker()
+
 
   }
 
@@ -138,11 +142,12 @@ const jtrello = (function () {
     })
 
     // Tabs
-    $("#tabs").tabs();
+    $("#tabs").tabs();  
+    
+    // Datepicker
+    $("#datepicker").datepicker()
   }
 
-  // Datepicker
-  $("#datepicker").datepicker()
 
   /* =================== Publika metoder nedan ================== */
 
