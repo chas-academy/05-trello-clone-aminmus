@@ -90,10 +90,34 @@ const jtrello = (function () {
       ]
     });
 
+
+
     $(".card").on('click', function () {
-      // $(".dialog").find("#description-tab > h3").text(this.childNodes[0].nodeValue);
-      $(".dialog").find("#description-tab > h3").text(newCard.data('name'));
+      let clickedCard = this;
+
+      $(".dialog").find("#description-tab > h3").text($(clickedCard).data('name'));
+
+      if ($(clickedCard).data("deadline")) {
+        $(".dialog").find("#description-tab  #datepicker").datepicker("setDate", $(clickedCard).data("deadline"));
+      } else {
+        $(".dialog").find("#description-tab  #datepicker").datepicker("setDate", "");
+        console.log("no date");
+      }
+
       $(".dialog").dialog("open");
+
+
+
+      $(".dialog").off().on("dialogclose", function (event, ui) {
+        let cardDeadline;
+        let cardDescription;
+        cardDeadline = $(".dialog").find("#description-tab  #datepicker").val();
+        cardDescription = $(".dialog").find("#description-tab  #card-description").val();
+
+        $(clickedCard).data({ "deadline": cardDeadline, "description": cardDescription })
+
+        console.log("This is the data", $(clickedCard).data());
+      });
     });
 
     // Tabs
@@ -101,8 +125,6 @@ const jtrello = (function () {
 
     // Datepicker
     $("#datepicker").datepicker()
-
-
   }
 
 
@@ -142,8 +164,8 @@ const jtrello = (function () {
     })
 
     // Tabs
-    $("#tabs").tabs();  
-    
+    $("#tabs").tabs();
+
     // Datepicker
     $("#datepicker").datepicker()
   }
