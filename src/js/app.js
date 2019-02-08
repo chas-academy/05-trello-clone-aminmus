@@ -91,12 +91,14 @@ const jtrello = (function () {
     });
 
 
-
+    // Dialog event handler
     $(".card").on('click', function () {
       let clickedCard = this;
 
+      // Set dialog title
       $(".dialog").find("#description-tab > h3").text($(clickedCard).data('name'));
 
+      // Check if deadline is set and updates dialog date accordingly
       if ($(clickedCard).data("deadline")) {
         $(".dialog").find("#description-tab  #datepicker").datepicker("setDate", $(clickedCard).data("deadline"));
       } else {
@@ -104,16 +106,23 @@ const jtrello = (function () {
         console.log("no date");
       }
 
+      // Check if description is set and updates dialog date accordingly
+      if ($(clickedCard).data("description")) {
+        $(".dialog").find("#description-tab   #card-description").val($(clickedCard).data("description"));
+      } else {
+        $(".dialog").find("#description-tab   #card-description").val("");
+        console.log("no description");
+      }
+
       $(".dialog").dialog("open");
 
 
-
+      // On dialog close
       $(".dialog").off().on("dialogclose", function (event, ui) {
-        let cardDeadline;
-        let cardDescription;
-        cardDeadline = $(".dialog").find("#description-tab  #datepicker").val();
-        cardDescription = $(".dialog").find("#description-tab  #card-description").val();
-
+        // Get data from dialog
+        let cardDeadline = $(".dialog").find("#description-tab  #datepicker").val();
+        let cardDescription = $(".dialog").find("#description-tab  #card-description").val();
+        // Set data from dialog
         $(clickedCard).data({ "deadline": cardDeadline, "description": cardDescription })
 
         console.log("This is the data", $(clickedCard).data());
