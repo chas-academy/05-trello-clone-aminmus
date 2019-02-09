@@ -42,6 +42,22 @@ input {
   text-indent: 8px;
 }
 
+.dialog textarea {
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    border-radius: 3px;
+    height: auto;
+    margin-bottom: 4px;
+    max-height: 162px;
+    min-height: 54px;
+    overflow-y: auto;
+    padding: 0;
+    resize: none;
+    word-wrap: break-word;
+    text-indent: 8px;
+}
+
 .board {
     height: 100vh;
 }
@@ -129,8 +145,13 @@ input {
   padding: 0;
 }
 
-#tabs div{
+#tabs div {
   padding: 5px;
+}
+
+#tabs div div > label {
+  display: inline-block;
+  margin: 5px;
 }
 
 #tabs div > * {
