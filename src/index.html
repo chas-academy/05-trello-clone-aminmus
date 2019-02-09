@@ -86,20 +86,23 @@
         <div id="tabs">
             <ul>
                 <li><a href="#description-tab">Description</a></li>
-                <li><a href="#fragment2">Extras</a></li>
+                <li><a href="#extras">Extras</a></li>
             </ul>
             <div id="description-tab">
                 <h3></h3>
-                <input type="text" id="datepicker">
 
-                <!-- <p id="card-description">Description here</p> -->
+                <div>
+                    <label for="datepicker">Task Deadline</label>
+                    <input type="text" id="datepicker" placeholder="Date">
+                </div>
+
                 <div>
                     <label for="card-description">Description</label>
-                    <textarea name="description" id="card-description" placeholder="Card Description here" cols="30" rows="10"></textarea>
+                    <textarea name="description" id="card-description" placeholder="Task Description" cols="30" rows="10"></textarea>
                 </div>
 
             </div>
-            <div id="fragment2"></div>
+            <div id="extras"></div>
         </div>
     </div>
 </body>

@@ -129,6 +129,22 @@ input {
   padding: 0;
 }
 
+#tabs div{
+  padding: 5px;
+}
+
+#tabs div > * {
+  margin: 5px;
+}
+
+.dialog label {
+  display: inline;
+}
+ 
+.dialog h3 {
+  padding: 10px;
+}
+
 .ui-dialog {
   background: #e2e4e6;
   border-radius: 3px;
