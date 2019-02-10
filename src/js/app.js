@@ -78,7 +78,6 @@ const jtrello = (function () {
     newCard.data("name", input);
 
     // Dialog (for cards)
-
     $(".dialog").dialog({
       buttons: [
         {
@@ -89,7 +88,6 @@ const jtrello = (function () {
         }
       ]
     });
-
 
 
     // Dialog event handler
@@ -115,6 +113,12 @@ const jtrello = (function () {
         console.log("no description");
       }
 
+      // Add reference to the specific card clicked on, to be able to use with colorpicker widget
+      $(".dialog").off().on("dialogopen", function (event, ui) {
+        $(".dialog").data({ " cardReference": clickedCard });
+        console.log("This is the card reference: ", $(".dialog").data(" cardReference"));
+      });
+
       $(".dialog").dialog("open");
 
 
@@ -125,7 +129,6 @@ const jtrello = (function () {
         let cardDescription = $(".dialog").find("#description-tab  #card-description").val();
         // Set data from dialog
         $(clickedCard).data({ "deadline": cardDeadline, "description": cardDescription })
-
         console.log("This is the data", $(clickedCard).data());
       });
     });
@@ -137,15 +140,22 @@ const jtrello = (function () {
     $("#datepicker").datepicker('option', 'dateFormat', 'yy-mm-dd');
 
     // color picker
+    $.widget('custom.colorpick', {
+      _create() {
+        $("#color-list").hide();
 
-    // $.widget('custom.color', {
-    //   _create() {
-    //     });
-
-    $("#color-list").hide();
-    $("#colorpicker").on("click", function () {
-      $("#color-list").toggle('slow');
+        $("#colorpicker").off().on("click", function () {
+          $("#color-list").toggle('slow');
+        });
+        $("#color-list li").on("click", function () {
+          let pickedColor = $(this).find("button").css("background-color");
+          let cardRef = $(".dialog").data(" cardReference");
+          $(cardRef).css("background-color", pickedColor);
+        })
+      }
     });
+
+    $("#color-list").colorpick();
 
   }
 
