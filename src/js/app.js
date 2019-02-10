@@ -134,7 +134,7 @@ const jtrello = (function () {
     $("#tabs").tabs();
 
     // Datepicker
-    $("#datepicker").datepicker({ dateFormat: 'DD d MM yy' });
+    $("#datepicker").datepicker('option', 'dateFormat', 'yy-mm-dd');
 
     // color picker
 
