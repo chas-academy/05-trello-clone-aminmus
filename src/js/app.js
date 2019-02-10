@@ -24,42 +24,38 @@ const jtrello = (function () {
     DOM.$lists = $('.list');
     DOM.$cards = $('.card');
 
-    DOM.$newListButton = $('button#new-list');
-    DOM.$deleteListButton = $('.list-header > button.delete');
+    // DOM.$newListButton = $('button#new-list');
+    // DOM.$deleteListButton = $('.list-header > button.delete');
 
     DOM.$newCardForm = $('form.new-card');
     DOM.$deleteCardButton = $('.card > button.delete');
   }
-
-  function createTabs() { }
-  function createDialogs() { }
 
   /*
   *  Denna metod kommer nyttja variabeln DOM för att binda eventlyssnare till
   *  createList, deleteList, createCard och deleteCard etc.
   */
   function bindEvents() {
-    DOM.$newListButton.on('click', createList);
-    DOM.$deleteListButton.on('click', deleteList);
+    // DOM.$newListButton.on('click', createList);
+    // DOM.$deleteListButton.on('click', deleteList);
 
     DOM.$newCardForm.on('submit', createCard);
     DOM.$deleteCardButton.on('click', deleteCard);
   }
 
   /* ============== Metoder för att hantera listor nedan ============== */
-  function createList() {
-    event.preventDefault();
-    console.log("This should create a new list");
-  }
+  /*   function createList() {
+      event.preventDefault();
+      console.log("This should create a new list");
+    } */
 
-  function deleteList() {
-    console.log("This should delete the list you clicked on");
-  }
+  /*   function deleteList() {
+      console.log("This should delete the list you clicked on");
+    } */
 
   /* =========== Metoder för att hantera kort i listor nedan =========== */
   function createCard(event) {
     event.preventDefault();
-    console.log("This should create a new card");
 
     // Gets user input for new card
     let input = $(this).find('input').val();
@@ -73,7 +69,7 @@ const jtrello = (function () {
     let newCard = bottomOfList.prev(".card");
     newCard.effect('bounce');
 
-    // Add event listeners to newly created card
+    // Adding event listeners to the card
 
     newCard.children('.card > button.delete').on('click', deleteCard);  // Delete
 
@@ -91,7 +87,6 @@ const jtrello = (function () {
       ]
     });
 
-
     // Dialog event handler
     $(".card").on('click', function () {
       let clickedCard = this;
@@ -104,7 +99,6 @@ const jtrello = (function () {
         $(".dialog").find("#description-tab  #datepicker").datepicker("setDate", $(clickedCard).data("deadline"));
       } else {
         $(".dialog").find("#description-tab  #datepicker").datepicker("setDate", "");
-        console.log("no date");
       }
 
       // Check if description is set and updates dialog date accordingly
@@ -112,13 +106,11 @@ const jtrello = (function () {
         $(".dialog").find("#description-tab   #card-description").val($(clickedCard).data("description"));
       } else {
         $(".dialog").find("#description-tab   #card-description").val("");
-        console.log("no description");
       }
 
       // Add reference to the specific card clicked on, to be able to use with colorpicker widget
       $(".dialog").off().on("dialogopen", function (event, ui) {
         $(".dialog").data({ "cardReference": clickedCard });
-        console.log("This is the card reference: ", $(".dialog").data("cardReference"));
       });
 
       $(".dialog").dialog("open");
@@ -131,7 +123,6 @@ const jtrello = (function () {
         let cardDescription = $(".dialog").find("#description-tab  #card-description").val();
         // Set data from dialog
         $(clickedCard).data({ "deadline": cardDeadline, "description": cardDescription })
-        console.log("This is the data", $(clickedCard).data());
       });
     });
 
@@ -141,7 +132,7 @@ const jtrello = (function () {
     // Datepicker
     $("#datepicker").datepicker('option', 'dateFormat', 'yy-mm-dd');
 
-    // color picker
+    // Colorpicker
     $.widget('custom.colorpick', {
       _create() {
         $("#color-list").hide();
@@ -160,12 +151,10 @@ const jtrello = (function () {
     });
 
     $("#color-list").colorpick();
-
   }
 
-
+  // Metod för att radera kort
   function deleteCard() {
-    console.log("This should delete the card you clicked on");
     $(event.target).parent().off();
     $(event.target).parent().effect("clip", 250, function () {
       $(this).remove();
@@ -173,15 +162,13 @@ const jtrello = (function () {
   }
 
   // Metod för att rita ut element i DOM:en
-  function render() { }
+  // function render() { }
 
   // Metod för jQuery UI widgets
   function widgets() {
 
     // Sortable (for card lists)
-
     $(".list-cards").sortable({ connectWith: ".list-cards" });
-
 
     // Dialog (for cards)
     $(".dialog").dialog({
@@ -209,19 +196,14 @@ const jtrello = (function () {
     $("#datepicker").datepicker()
   }
 
-
   /* =================== Publika metoder nedan ================== */
 
   // Init metod som körs först
   function init() {
-    console.log(':::: Initializing JTrello ::::');
-    // Förslag på privata metoder
+    console.log(':::: Initializing JTrello, by Amin Mushehid ::::');
+
     captureDOMEls();
-    createTabs();
-    createDialogs();
-
     bindEvents();
-
     widgets();
   }
 
