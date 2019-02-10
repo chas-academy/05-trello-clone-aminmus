@@ -91,6 +91,7 @@ const jtrello = (function () {
     });
 
 
+
     // Dialog event handler
     $(".card").on('click', function () {
       let clickedCard = this;
@@ -133,7 +134,19 @@ const jtrello = (function () {
     $("#tabs").tabs();
 
     // Datepicker
-    $("#datepicker").datepicker()
+    $("#datepicker").datepicker({ dateFormat: 'DD d MM yy' });
+
+    // color picker
+
+    // $.widget('custom.color', {
+    //   _create() {
+    //     });
+
+    $("#color-list").hide();
+    $("#colorpicker").on("click", function () {
+      $("#color-list").toggle('slow');
+    });
+
   }
 
 

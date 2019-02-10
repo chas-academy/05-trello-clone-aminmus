@@ -43,6 +43,7 @@ input {
 }
 
 .dialog textarea {
+    font-family: inherit;
     width: 100%;
     border: none;
     box-shadow: none;
@@ -52,7 +53,7 @@ input {
     max-height: 162px;
     min-height: 54px;
     overflow-y: auto;
-    padding: 0;
+    padding-top: 5px;
     resize: none;
     word-wrap: break-word;
     text-indent: 8px;
@@ -145,11 +146,74 @@ input {
   padding: 0;
 }
 
+#extras button {
+  display: inline-block;
+  border: 0;
+  border-radius: 50%;
+  padding: 12px;
+}
+
+#extras li {
+  margin: 5px;
+}
+
+#extras label {
+  display: inline-block;
+}
+
+#colorpicker {
+  display: inline-block;
+  border: 0;
+  border-radius: 50%;
+  padding: 12px;
+  background-color: #fff;
+  vertical-align: auto;
+  text-decoration: borde
+}
+
+
+#yellow {
+  background-color: #fed22f;
+}
+
+
+#green {
+  background-color: #b1d666;
+}
+
+#blue {
+  background-color: #6eadff;
+}
+
+#red {
+  background-color: #ffb3c2;
+}
+
+#orange {
+  background-color: #ffd089;
+}
+
+#purple {
+  background-color: #ddc4f8;
+}
+
+#magenta {
+  background-color: #eeccee;
+}
+
+#cyan {
+  background-color: #a9ebd2;
+}
+
+#white {
+  background-color: #fff;
+}
+
 #tabs div {
   padding: 5px;
 }
 
-#tabs div div > label {
+#tabs div > label {
   display: inline-block;
   margin: 5px;
 }
