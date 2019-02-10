@@ -71,8 +71,10 @@ const jtrello = (function () {
     $(bottomOfList).before("<li class='card ui-sortable-handle'>" + input + '<button class="button delete">X</button>' + '</li>');
 
     let newCard = bottomOfList.prev(".card");
+    newCard.effect('bounce');
 
     // Add event listeners to newly created card
+
     newCard.children('.card > button.delete').on('click', deleteCard);  // Delete
 
     newCard.data("name", input);
@@ -115,8 +117,8 @@ const jtrello = (function () {
 
       // Add reference to the specific card clicked on, to be able to use with colorpicker widget
       $(".dialog").off().on("dialogopen", function (event, ui) {
-        $(".dialog").data({ " cardReference": clickedCard });
-        console.log("This is the card reference: ", $(".dialog").data(" cardReference"));
+        $(".dialog").data({ "cardReference": clickedCard });
+        console.log("This is the card reference: ", $(".dialog").data("cardReference"));
       });
 
       $(".dialog").dialog("open");
@@ -147,10 +149,12 @@ const jtrello = (function () {
         $("#colorpicker").off().on("click", function () {
           $("#color-list").toggle('slow');
         });
-        $("#color-list li").on("click", function () {
+        $("#color-list li").off().on("click", function () {
           let pickedColor = $(this).find("button").css("background-color");
-          let cardRef = $(".dialog").data(" cardReference");
+          let cardRef = $(".dialog").data("cardReference");
           $(cardRef).css("background-color", pickedColor);
+          $(".ui-dialog").css("background-color", pickedColor);
+          $(".ui-dialog").data("background-color", pickedColor);
         })
       }
     });
@@ -162,7 +166,10 @@ const jtrello = (function () {
 
   function deleteCard() {
     console.log("This should delete the card you clicked on");
-    $(event.target).parent().remove();
+    $(event.target).parent().off();
+    $(event.target).parent().effect("clip", 250, function () {
+      $(this).remove();
+    });
   }
 
   // Metod för att rita ut element i DOM:en
